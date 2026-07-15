@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style3.css">
+    <title></title>
+</head>
+
+<body>
+
+    <div class="loading">
+        <img src="3511038.png" alt="">
+        <h2 id="text">Loading your birthday surprise...</h2>
+        <div class="bar">
+            <div class="progress"></div>
+        </div>
+        <div class="percent">0%</div>
+    </div>
+
+    <script>
+
+const progress = document.querySelector(".progress");
+const percent = document.querySelector(".percent");
+
+let value = 0;
+
+const loading = setInterval(() => {
+
+    value++;
+
+    progress.style.width = value + "%";
+    percent.textContent = value + "%";
+
+    if(value >= 100){
+
+        clearInterval(loading);
+
+        // Changer de page après 0,5 s
+        setTimeout(() => {
+            window.location.href = "suite4.html";
+        },500);
+
+    }
+
+},40);
+
+</script>
+
+</body>
+
+</html>

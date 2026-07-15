@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style4.css">
+    <title></title>
+</head>
+
+<body>
+
+    <section>
+        <h1>🔊 Augmente le volume avant 😉</h1>
+        <h2>Clique sur le cadeau pour l'ouvrir</h2>
+        <img src="cadeau.png" id="gift">
+    </section>
+
+    <script>
+
+        const gift = document.getElementById("gift");
+
+        gift.addEventListener("click", () => {
+
+            gift.classList.add("open");
+
+            setTimeout(() => {
+
+                window.location.href = "suite5.html";
+
+            }, 800);
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title></title>
+</head>
+
+<body>
+
+    <section>
+        <div class="image">
+            <img src="birthday-cake.png" alt="Gâteau d'anniversaire">
+        </div>
+
+        <div class="password">
+            <h2>ENTREZ LE MOT DE PASSE</h2>
+            <div class="password-display">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </div>
+            <div class="keypad">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+
+                <button>⌫</button>
+                <button>0</button>
+                <button class="delete">Ok</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+        const password = "23072010";
+        let input = "";
+
+        const boxes = document.querySelectorAll(".box");
+        const buttons = document.querySelectorAll(".keypad button");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const value = button.textContent;
+
+                if (value === "⌫") {
+                    input = input.slice(0, -1);
+                    updateDisplay();
+                    return;
+                }
+                if (value === "Ok") {
+                    if (input === password) {
+                        window.location.href = "suite2.html";
+                    } else {
+                        document.querySelector(".password-display").classList.add("error");
+                        setTimeout(() => {
+                            document.querySelector(".password-display").classList.remove("error");
+                            input = "";
+                            updateDisplay();
+                        }, 400);
+                    }
+                    return;
+                }
+                if (input.length < 8) {
+                    input += value;
+                    updateDisplay();
+                }
+
+            });
+        });
+
+        function updateDisplay() {
+
+            boxes.forEach((box, index) => {
+
+                if (index < input.length) {
+                    box.textContent = "●";
+                } else {
+                    box.textContent = "";
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    background: #FFF8D6;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* STRUCTURE */
+
+section {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* IMAGE */
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: clamp(20px, 6vh, 40px);
+    margin-bottom: clamp(15px, 4vh, 25px);
+}
+
+.image img {
+    width: clamp(90px, 35vw, 150px);
+    height: auto;
+}
+
+
+/* ZONE MOT DE PASSE */
+
+.password {
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: clamp(20px, 4vh, 30px);
+
+    padding: 0 15px;
+}
+
+
+h2 {
+
+    color: #5A972D;
+
+    font-size: clamp(18px, 5vw, 22px);
+
+    letter-spacing: 1.5px;
+
+    text-align: center;
+}
+
+
+/* AFFICHAGE CODE */
+
+.password-display {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: clamp(5px, 2vw, 8px);
+
+}
+
+
+.box {
+
+    width: clamp(38px, 12vw, 45px);
+
+    height: clamp(38px, 12vw, 45px);
+
+    border: 2px solid #6AA84F;
+
+    border-radius: 12px;
+
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    font-size: clamp(22px, 7vw, 30px);
+
+    color: #39611d;
+
+}
+
+
+/* CLAVIER */
+
+.keypad {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, clamp(55px, 18vw, 65px));
+
+    gap: clamp(8px, 3vw, 12px);
+
+    justify-content: center;
+
+    margin-top: 10px;
+
+}
+
+
+button {
+
+    width: clamp(55px, 18vw, 65px);
+
+    height: clamp(55px, 18vw, 65px);
+
+
+    font-size: clamp(22px, 7vw, 28px);
+
+
+    border: none;
+
+    border-radius: 50%;
+
+
+    cursor: pointer;
+
+
+    background: #6AA84F;
+
+
+    transition: transform .15s ease,
+                background .15s ease;
+
+
+    /* meilleure zone tactile */
+    touch-action: manipulation;
+
+}
+
+
+button:hover {
+
+    background: #7FBF3F;
+
+}
+
+
+button:active {
+
+    transform: scale(.92);
+
+}
+
+
+/* ERREUR */
+
+@keyframes shake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-8px);
+    }
+
+    40% {
+        transform: translateX(8px);
+    }
+
+    60% {
+        transform: translateX(-8px);
+    }
+
+    80% {
+        transform: translateX(8px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+
+.password-display.error {
+
+    animation: shake .4s;
+
+}
+
+
+
+/* PARTICULES */
+
+#tsparticles {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+}
+
+
+/* PETITS TELEPHONES */
+
+@media(max-width:360px) {
+
+
+    .password {
+
+        gap: 15px;
+
+    }
+
+
+    .keypad {
+
+        gap: 7px;
+
+    }
+
+
+    button {
+
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 22px;
+
+    }
+
+
+    .box {
+
+        width: 34px;
+
+        height: 34px;
+
+    }
+
+}
+
+
+/* TABLETTES */
+
+@media(min-width:768px) {
+
+
+    .image img {
+
+        width:150px;
+
+    }
+
+
+    button:hover {
+
+        transform:scale(1.05);
+
+    }
+
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire</title>
+
+    <link rel="stylesheet" href="style6.css">
+</head>
+
+<body>
+
+    <div id="scene">
+
+        <div id="message"></div>
+
+        <div id="cake">
+
+            <div class="candles">
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+            </div>
+
+            <div class="cake-top"></div>
+            <div class="cake-bottom"></div>
+
+        </div>
+
+        <canvas id="fireworks"></canvas>
+
+    </div>
+
+    <script>
+        const flames = document.querySelectorAll(".flame");
+        const message = document.getElementById("message");
+        const cake = document.getElementById("cake");
+
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+        function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function animation() {
+
+            // --------------------
+            // Allumage progressif
+            // --------------------
+
+            for (const flame of flames) {
+
+                flame.classList.remove("off");
+                flame.classList.add("on");
+
+                await wait(600);
+
+            }
+
+            await wait(1200);
+
+            // --------------------
+            // Compte à rebours
+            // --------------------
+
+            for (let i = 3; i > 0; i--) {
+
+                message.textContent = i;
+
+                await wait(1000);
+
+            }
+
+            message.textContent = "✨ Fais un vœu ✨";
+
+            await wait(2500);
+
+            // --------------------
+            // Extinction progressive
+            // --------------------
+
+            for (const flame of flames) {
+
+                flame.classList.remove("on");
+                flame.classList.add("off");
+
+                await wait(250);
+
+            }
+
+            await wait(2500);
+
+            // --------------------
+            // Le gâteau disparaît
+            // --------------------
+
+            cake.classList.add("hide");
+
+            message.textContent = "🎉 Joyeux Anniversaire !";
+
+            launchFireworks();
+        }
+
+        animation();
+
+        ///////////////////////////////////////////////////////////////
+
+        const particles = [];
+
+        function firework() {
+
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height * 0.6;
+
+            for (let i = 0; i < 80; i++) {
+
+                particles.push({
+
+                    x: x,
+                    y: y,
+
+                    dx: (Math.random() - 0.5) * 8,
+                    dy: (Math.random() - 0.5) * 8,
+
+                    life: 100,
+
+                    color: `hsl(${Math.random() * 360},100%,60%)`
+
+                });
+
+            }
+
+        }
+
+        function launchFireworks() {
+
+            setInterval(firework, 700);
+
+            animate();
+
+        }
+
+        function animate() {
+
+            ctx.fillStyle = "rgba(0,0,0,0.20)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p, index) => {
+
+                p.x += p.dx;
+                p.y += p.dy;
+
+                p.dy += 0.03;
+
+                p.life--;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+
+                if (p.life <= 0) {
+
+                    particles.splice(index, 1);
+
+                }
+
+            });
+
+            requestAnimationFrame(animate);
+
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style5.css">
+    <title></title>
+</head>
+
+<body>
+
+    <section>
+        <div class="player">
+            <div class="title">
+                <button id="skip">
+                    <span class="fill"></span>
+                    <span class="text">Skip ⏭</span>
+                </button>
+            </div>
+            <div id="lyrics">
+                ...
+            </div>
+        </div>
+    </section>
+
+    <audio id="music">
+        <source src="Roxanne.m4a" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const music = document.getElementById("music");
+        const lyrics = document.getElementById("lyrics");
+        const skip = document.getElementById("skip");
+        const fill = document.querySelector(".fill");
+
+        const lines = [
+
+            { time: 0.0, text: "" },
+
+            { time: 1.0, text: "[Musique]" },
+
+            { time: 18.8, text: "Roxanne" },
+
+            { time: 21.9, text: "You don't have to put on the red light" },
+
+            { time: 27.3, text: "Those days are over" },
+
+            { time: 29.5, text: "You don't have to sell your body to the night" },
+
+            { time: 33.5, text: "Roxanne" },
+
+            { time: 36.8, text: "You don't have to wear that dress tonight" },
+
+            { time: 41.8, text: "Walk the streets for money" },
+
+            { time: 44.0, text: "You don't care if it's wrong or if it's right" },
+
+            { time: 48.1, text: "Roxanne" },
+
+            { time: 51.5, text: "You don't have to put on the red light" },
+
+            { time: 55.1, text: "Roxanne" },
+
+            { time: 58.5, text: "You don't have to put on the red light" },
+
+            { time: 62.3, text: "Roxanne (put on the red light)" },
+
+            { time: 65.6, text: "Roxanne (put on the red light)" },
+
+            { time: 69.2, text: "Roxanne (put on the red light)" },
+
+            { time: 72.7, text: "Roxanne (put on the red light)" },
+
+            { time: 76.0, text: "Roxanne (put on the red light)" },
+
+            { time: 79.6, text: "Ro" },
+
+            { time: 83.3, text: "[Musique]" },
+
+            { time: 90.8, text: "I loved you since I knew you" },
+
+            { time: 94.4, text: "I wouldn't talk down to you" },
+
+            { time: 98.1, text: "I have to tell you just how I feel" },
+
+            { time: 101.1, text: "I won't share you with another boy" },
+
+            { time: 105.3, text: "I know my mind is made up" },
+
+            { time: 108.7, text: "So put away your make up" },
+
+            { time: 112.8, text: "Told you once I won't tell you again" },
+
+            { time: 115.7, text: "It's a bad way" },
+
+            { time: 119.0, text: "Roxanne" },
+
+            { time: 122.4, text: "You don't have to put on the red light" },
+
+            { time: 126.2, text: "Roxanne" },
+
+            { time: 129.8, text: "You don't have to put on the red light" },
+
+            { time: 133.2, text: "Roxanne (you don't have to put on the red light)" },
+
+            { time: 136.9, text: "Roxanne (put on the red light)" },
+
+            { time: 140.3, text: "Roxanne (put on the red light)" },
+
+            { time: 143.8, text: "Roxanne (put on the red light)" },
+
+            { time: 147.3, text: "Roxanne (put on the red light)" },
+
+            { time: 150.7, text: "Roxanne (put on the red light)" },
+
+            { time: 154.1, text: "Roxanne (put on the red light)" },
+
+            { time: 157.6, text: "Roxanne (put on the red light)" },
+
+            { time: 161.0, text: "Roxanne (put on the red light)" },
+
+            { time: 164.4, text: "Roxanne (put on the red light)" },
+
+            { time: 167.7, text: "Roxanne (you don't have to put on the red light)" },
+
+            { time: 171.3, text: "Roxanne (put on the red light)" },
+
+            { time: 174.7, text: "Roxanne (you don't have to put on the red light)" },
+
+            { time: 178.2, text: "Roxanne (put on the red light)" },
+
+            { time: 181.6, text: "Roxanne (put on the red light)" }
+
+        ];
+
+
+
+        // Lance la musique
+        window.addEventListener("load", () => {
+
+            music.play().catch(() => {
+
+                console.log("Le navigateur attend une interaction.");
+
+            });
+
+        });
+
+        // Synchronisation des paroles
+        let current = -1;
+
+        music.addEventListener("timeupdate", () => {
+
+            console.log(music.currentTime);
+
+            // Affiche le bouton Skip après 82 secondes
+            if (music.currentTime >= 82) {
+                skip.classList.add("show");
+            }
+
+            const percent = Math.min((music.currentTime / 82) * 100, 100);
+
+            fill.style.width = percent + "%";
+
+            if (percent >= 100) {
+
+                skip.classList.add("ready");
+
+            }
+
+            for (let i = lines.length - 1; i >= 0; i--) {
+
+                if (music.currentTime >= lines[i].time) {
+
+                    if (i !== current) {
+
+                        current = i;
+
+                        lyrics.style.opacity = "0";
+                        lyrics.style.transform = "translateY(20px)";
+
+                        setTimeout(() => {
+
+                            lyrics.textContent = lines[i].text;
+
+                            lyrics.style.opacity = "1";
+                            lyrics.style.transform = "translateY(0)";
+
+                        }, 200);
+
+                    }
+
+                    break;
+                }
+
+            }
+
+        });
+
+        skip.addEventListener("click", () => {
+
+            if (!skip.classList.contains("ready")) return;
+
+            window.location.href = "suite6.html";
+
+        });
+    </script>
+
+</body>
+
+</html>

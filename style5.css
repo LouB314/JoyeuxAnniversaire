@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    background:
+        radial-gradient(circle at top, #2b2b2b, #121212);
+}
+
+/* Titre en haut */
+.title {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #6AA84F;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+}
+
+/* Centre les paroles */
+section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player {
+    text-align: center;
+}
+
+#lyrics {
+    color: white;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: bold;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .5s, transform .5s;
+}
+
+#skip {
+
+    position: fixed;
+    top: 30px;
+    right: 30px;
+
+    width: 140px;
+    height: 50px;
+
+    border: 2px solid #6AA84F;
+    border-radius: 50px;
+
+    background: #c2dfb56f;
+
+    overflow: hidden;
+
+    cursor: not-allowed;
+
+}
+
+#skip .fill {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 0%;
+    height: 100%;
+
+    background: #6AA84F;
+
+    transition: width .2s linear;
+
+}
+
+#skip .text {
+
+    position: relative;
+    z-index: 1;
+
+    color: white;
+    font-size: 18px;
+}
+
+#skip.ready {
+
+    cursor: pointer;
+
+    box-shadow: 0 0 20px #6AA84F;
+
+    animation: pulse 1s infinite;
+
+}
+
+@keyframes pulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}

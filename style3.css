@@ -1,0 +1,198 @@
+/* RESET */
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+
+html,
+body {
+
+    width: 100%;
+
+    min-height:100%;
+
+    overflow:hidden;
+
+}
+
+
+
+body {
+
+    background:#FFF8D6;
+
+    height:100dvh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+
+
+/* CONTENEUR */
+
+.loading {
+
+    width:min(90%, 350px);
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+
+
+/* IMAGE */
+
+.loading img {
+
+
+    width:clamp(90px, 35vw, 150px);
+
+    height:auto;
+
+
+    margin-bottom:clamp(20px, 5vh, 30px);
+
+
+}
+
+
+
+/* TITRE */
+
+h2 {
+
+
+    color:#5A972D;
+
+
+    margin-bottom:clamp(20px,5vh,30px);
+
+
+    font-size:clamp(20px,6vw,23px);
+
+
+    letter-spacing:1px;
+
+
+}
+
+
+
+/* BARRE */
+
+.bar {
+
+
+    width:100%;
+
+
+    height:clamp(14px,4vw,18px);
+
+
+    background:#d9d9d9;
+
+
+    border-radius:50px;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+/* PROGRESSION */
+
+.progress {
+
+
+    width:0%;
+
+
+    height:100%;
+
+
+    background:#6AA84F;
+
+
+    border-radius:50px;
+
+
+    transition:width .05s linear;
+
+
+}
+
+
+
+/* POURCENTAGE */
+
+.percent {
+
+
+    margin-top:15px;
+
+
+    font-size:clamp(18px,5vw,20px);
+
+
+    color:#5A972D;
+
+
+}
+
+
+
+/* PETITS TELEPHONES */
+
+@media(max-width:360px){
+
+
+    .loading {
+
+        padding:15px;
+
+    }
+
+
+    h2 {
+
+        font-size:20px;
+
+    }
+
+
+}
+
+
+
+/* TABLETTES */
+
+@media(min-width:768px){
+
+
+    .loading {
+
+        max-width:350px;
+
+    }
+
+
+}

@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    background: #10142b;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#message {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+#cake {
+    position: absolute;
+    left: 50%;
+    bottom: 120px;
+    transform: translateX(-50%);
+    transition: 1.5s;
+}
+
+.candles {
+    display: flex;
+    justify-content: space-evenly;
+    width: 230px;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.candle {
+    position: relative;
+    width: 14px;
+    height: 70px;
+    background: #ffe066;
+    border-radius: 4px;
+}
+
+/* ---------- FLAMME ---------- */
+
+.flame {
+
+    position: absolute;
+    top: -25px;
+    left: -2px;
+
+    width: 18px;
+    height: 26px;
+
+    background: radial-gradient(circle at 50% 25%,
+            #fff8b0 0%,
+            #ffe066 20%,
+            orange 55%,
+            #ff5e00 100%);
+
+    border-radius: 50% 50% 50% 50% / 70% 70% 35% 35%;
+
+    opacity: 0;
+
+    transform: scale(.35);
+
+    filter: drop-shadow(0 0 0px orange);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease,
+        filter 2s ease;
+}
+
+.flame.on {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    filter: drop-shadow(0 0 20px orange);
+
+    animation: flicker .15s infinite alternate;
+}
+
+.flame.off {
+
+    opacity: 0;
+
+    transform:
+        translateX(10px) translateY(-4px) scale(.15) rotate(25deg);
+
+    filter: drop-shadow(0 0 0px orange);
+
+    animation: none;
+}
+
+@keyframes flicker {
+
+    from {
+        transform: scale(1) rotate(-2deg);
+    }
+
+    to {
+        transform: scale(.93) rotate(2deg);
+    }
+
+}
+
+.cake-top {
+    width: 250px;
+    height: 50px;
+    background: #ff9ecf;
+    border-radius: 20px 20px 0 0;
+}
+
+.cake-bottom {
+    width: 250px;
+    height: 80px;
+    background: #ff74aa;
+    border-radius: 0 0 20px 20px;
+}
+
+.hide {
+    opacity: 0;
+    transform: translateX(-50%) scale(.2);
+}
+
+canvas {
+    position: absolute;
+    inset: 0;
+}
